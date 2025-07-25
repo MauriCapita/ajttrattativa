@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="TTCTService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      
+      <!-- Container principale -->
+      <EntityContainer Name="Container">
+        <EntitySet Name="TTCTRequestSet" EntityType="TTCTService.TTCTRequest"/>
+        <EntitySet Name="ProgrammaSet" EntityType="TTCTService.Programma"/>
+        <EntitySet Name="LocalitaSet" EntityType="TTCTService.Localita"/>
+        <EntitySet Name="ControparteSet" EntityType="TTCTService.Controparte"/>
+      </EntityContainer>
+
+      <!-- Entità principale richiesta TTCT -->
+      <EntityType Name="TTCTRequest">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        
+        <!-- Dati principali -->
+        <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="20"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="20"/>
+        <Property Name="TipoAzione" Type="Edm.String" MaxLength="50"/>
+        <Property Name="DataCreazione" Type="Edm.DateTimeOffset"/>
+        <Property Name="UtenteCreazione" Type="Edm.String" MaxLength="50"/>
+        
+        <!-- Sezione 1: Tipologia della Richiesta -->
+        <Property Name="TipologiaRichiesta" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CategoriaRichiesta" Type="Edm.String" MaxLength="50"/>
+        <Property Name="Priorita" Type="Edm.String" MaxLength="20"/>
+        
+        <!-- Sezione 2: Programma -->
+        <Property Name="CodiceProgramma" Type="Edm.String" MaxLength="20"/>
+        <Property Name="NomeProgramma" Type="Edm.String" MaxLength="100"/>
+        <Property Name="VersioneProgramma" Type="Edm.String" MaxLength="20"/>
+        
+        <!-- Sezione 3: Tipologia di Movimentazione -->
+        <Property Name="TipoMovimentazione" Type="Edm.String" MaxLength="50"/>
+        <Property Name="ModalitaMovimentazione" Type="Edm.String" MaxLength="50"/>
+        <Property Name="UrgenzaMovimentazione" Type="Edm.String" MaxLength="20"/>
+        
+        <!-- Sezione 4: Località -->
+        <Property Name="LocalitaPartenza" Type="Edm.String" MaxLength="100"/>
+        <Property Name="LocalitaDestinazione" Type="Edm.String" MaxLength="100"/>
+        <Property Name="PaesePartenza" Type="Edm.String" MaxLength="50"/>
+        <Property Name="PaeseDestinazione" Type="Edm.String" MaxLength="50"/>
+        
+        <!-- Sezione 5: Controparte Contrattuale -->
+        <Property Name="NomeControparte" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CodiceControparte" Type="Edm.String" MaxLength="20"/>
+        <Property Name="TipoControparte" Type="Edm.String" MaxLength="50"/>
+        <Property Name="PaeseControparte" Type="Edm.String" MaxLength="50"/>
+        
+        <!-- Sezione 6: Business/Contratto di Riferimento -->
+        <Property Name="NumeroContratto" Type="Edm.String" MaxLength="50"/>
+        <Property Name="TipoContratto" Type="Edm.String" MaxLength="50"/>
+        <Property Name="DataContratto" Type="Edm.DateTimeOffset"/>
+        <Property Name="ValoreContratto" Type="Edm.Decimal" Precision="15" Scale="2"/>
+        
+        <!-- Sezione 7: Autorizzazioni già Ottenute -->
+        <Property Name="AutorizzazioniOttenute" Type="Edm.Boolean"/>
+        <Property Name="NumeroAutorizzazione" Type="Edm.String" MaxLength="50"/>
+        <Property Name="DataScadenzaAutorizzazione" Type="Edm.DateTimeOffset"/>
+        <Property Name="EnteRilascio" Type="Edm.String" MaxLength="100"/>
+        
+        <!-- Sezione 8: Materiali Interessati -->
+        <Property Name="CodiceMateriale" Type="Edm.String" MaxLength="50"/>
+        <Property Name="DescrizioneMateriale" Type="Edm.String" MaxLength="200"/>
+        <Property Name="QuantitaMateriale" Type="Edm.Int32"/>
+        <Property Name="UnitaMisura" Type="Edm.String" MaxLength="10"/>
+        
+        <!-- Sezione 9: Valore Complessivo -->
+        <Property Name="ValoreComplessivo" Type="Edm.Decimal" Precision="15" Scale="2"/>
+        <Property Name="Valuta" Type="Edm.String" MaxLength="3"/>
+        <Property Name="IVAInclusa" Type="Edm.Boolean"/>
+        
+        <!-- Sezione 10: Configurazione Velivoli -->
+        <Property Name="TipoVelivolo" Type="Edm.String" MaxLength="50"/>
+        <Property Name="ModelloVelivolo" Type="Edm.String" MaxLength="50"/>
+        <Property Name="MatricolaVelivolo" Type="Edm.String" MaxLength="20"/>
+        <Property Name="ConfigurazioneSpeciale" Type="Edm.String" MaxLength="200"/>
+        
+        <!-- Sezione 11: Elementi Supplementari -->
+        <Property Name="ElementiSupplementari" Type="Edm.String" MaxLength="500"/>
+        <Property Name="ServizioPostVendita" Type="Edm.Boolean"/>
+        <Property Name="SupportoTecnico" Type="Edm.Boolean"/>
+        
+        <!-- Sezione 12: Estremi Sottoscrizione -->
+        <Property Name="DataSottoscrizione" Type="Edm.DateTimeOffset"/>
+        <Property Name="LuogoSottoscrizione" Type="Edm.String" MaxLength="100"/>
+        <Property Name="FirmatarioAzienda" Type="Edm.String" MaxLength="100"/>
+        <Property Name="FirmatarioControparte" Type="Edm.String" MaxLength="100"/>
+        
+        <!-- Sezione 13: Annesso 1 -->
+        <Property Name="Annesso1Presente" Type="Edm.Boolean"/>
+        <Property Name="Annesso1Descrizione" Type="Edm.String" MaxLength="200"/>
+        <Property Name="Annesso1File" Type="Edm.String" MaxLength="255"/>
+        
+        <!-- Sezione 14: Annesso 2 -->
+        <Property Name="Annesso2Presente" Type="Edm.Boolean"/>
+        <Property Name="Annesso2Descrizione" Type="Edm.String" MaxLength="200"/>
+        <Property Name="Annesso2File" Type="Edm.String" MaxLength="255"/>
+        
+        <!-- Campi di controllo -->
+        <Property Name="SezioniCompletate" Type="Edm.Int32"/>
+        <Property Name="TotaleSezioni" Type="Edm.Int32"/>
+        <Property Name="PercentualeCompletamento" Type="Edm.Decimal" Precision="5" Scale="2"/>
+        
+        <!-- Annotazioni per UI (OData V4) -->
+        <Annotation Term="Common.Label" String="Richiesta TTCT"/>
+        <Annotation Term="UI.HeaderInfo">
+          <Record Type="UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Richiesta TTCT"/>
+            <PropertyValue Property="TypeNamePlural" String="Richieste TTCT"/>
+            <PropertyValue Property="Title">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="ID"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </EntityType>
+
+      <!-- Entità di supporto per dropdown/lookup -->
+      <EntityType Name="Programma">
+        <Key>
+          <PropertyRef Name="Codice"/>
+        </Key>
+        <Property Name="Codice" Type="Edm.String" Nullable="false" MaxLength="20"/>
+        <Property Name="Nome" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Descrizione" Type="Edm.String" MaxLength="200"/>
+        <Property Name="Attivo" Type="Edm.Boolean"/>
+      </EntityType>
+
+      <EntityType Name="Localita">
+        <Key>
+          <PropertyRef Name="Codice"/>
+        </Key>
+        <Property Name="Codice" Type="Edm.String" Nullable="false" MaxLength="10"/>
+        <Property Name="Nome" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Paese" Type="Edm.String" MaxLength="50"/>
+        <Property Name="Tipo" Type="Edm.String" MaxLength="20"/>
+      </EntityType>
+
+      <EntityType Name="Controparte">
+        <Key>
+          <PropertyRef Name="Codice"/>
+        </Key>
+        <Property Name="Codice" Type="Edm.String" Nullable="false" MaxLength="20"/>
+        <Property Name="Nome" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Tipo" Type="Edm.String" MaxLength="50"/>
+        <Property Name="Paese" Type="Edm.String" MaxLength="50"/>
+        <Property Name="Attivo" Type="Edm.Boolean"/>
+      </EntityType>
+
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

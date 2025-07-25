@@ -1,0 +1,240 @@
+<mvc:View
+    controllerName="com.company.trattativecontrattuali.trattativecontrattuali.controller.Section1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Page title="Attivazione Trattative Contrattuali" showNavButton="true" navButtonPress="onNavBack">
+        
+        <!-- Header con info richiesta -->
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <!-- Info Header -->
+                <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiMediumMarginBottom">
+                    <VBox>
+                        <Title text="Modulo TTCT - Nuova richiesta importazione" level="H2"/>
+                    </VBox>
+                    <HBox spacing="1rem">
+                        <Text text="Bozza - Importazione"/>
+                        <Text text="ID: TTCT-2024-NEW"/>
+                    </HBox>
+                </HBox>
+                
+                <!-- Progress Section -->
+                <VBox class="sapUiMediumMarginBottom">
+                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                        <VBox>
+                            <Title text="Avanzamento Compilazione" level="H3"/>
+                            <Text text="0 di 14 sezioni completate"/>
+                        </VBox>
+                        <HBox spacing="1rem">
+                            <Button text="Salva Bozza" icon="sap-icon://save" press="onSaveDraft"/>
+                            <Button text="Invia a TC" type="Emphasized" icon="sap-icon://email" press="onSubmitToTC"/>
+                        </HBox>
+                    </HBox>
+                </VBox>
+                
+                <!-- Sezioni del Modulo Title -->
+                <Title text="Sezioni del Modulo" level="H3" class="sapUiMediumMarginBottom"/>
+                
+                <!-- 14 Sezioni Grid - Miniaturizzata per visione d'insieme -->
+                <VBox class="sapUiMediumMarginBottom">
+                    
+                    <!-- Prima riga mini tiles -->
+                    <HBox class="sapUiTinyMarginBottom" spacing="0.5rem">
+                        <VBox class="miniTile tileCompleted" width="80px" height="50px">
+                            <Text text="1" class="miniTileNumber"/>
+                            <Text text="Tipologia della Richiesta" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="2" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Programma" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="3" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Tipologia di Movimentazione" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="4" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Località" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="5" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Controparte Contrattuale" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="6" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Business/Contratto di Riferimento" class="miniTileText"/>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Seconda riga mini tiles -->
+                    <HBox class="sapUiTinyMarginBottom" spacing="0.5rem">
+                        <VBox class="miniTile tileEmpty" width="80px" height="50px">
+                            <Text text="7" class="miniTileNumber"/>
+                            <Text text="Autorizzazioni già Ottenute" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="8" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Materiali Interessati" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="9" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Valore Complessivo" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileEmpty" width="80px" height="50px">
+                            <Text text="10" class="miniTileNumber"/>
+                            <Text text="Configurazione Velivoli" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileEmpty" width="80px" height="50px">
+                            <Text text="11" class="miniTileNumber"/>
+                            <Text text="Elementi Supplementari" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="12" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Estremi Sottoscrizione" class="miniTileText"/>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Terza riga mini tiles -->
+                    <HBox spacing="0.5rem">
+                        <VBox class="miniTile tileEmpty" width="80px" height="50px">
+                            <Text text="13" class="miniTileNumber"/>
+                            <Text text="Annesso 1" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileEmpty" width="80px" height="50px">
+                            <Text text="14" class="miniTileNumber"/>
+                            <Text text="Annesso 2" class="miniTileText"/>
+                        </VBox>
+                    </HBox>
+                    
+                </VBox>
+                
+                <!-- Sezione 1 Form -->
+                <Panel headerText="Sezione 1: Tipologia della Richiesta" class="sapUiResponsiveMargin" width="auto">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            
+                            <!-- Sezione Header -->
+                            <VBox class="sapUiMediumMarginBottom">
+                                <Title text="Sezione 1: Tipologia della Richiesta" level="H3"/>
+                                <Text text="Sezione obbligatoria" class="sapUiTinyMarginTop"/>
+                            </VBox>
+                            
+                            <!-- Form Fields -->
+                            <VBox class="sapUiMediumMarginBottom">
+                                
+                                <!-- Descrizione campo -->
+                                <VBox class="sapUiMediumMarginBottom">
+                                    <Label text="Selezione Tipologia" class="sapUiTinyMarginBottom"/>
+                                    <Text text="Selezionare il tipo di richiesta TTCT da attivare"/>
+                                </VBox>
+                                
+                                <!-- Messaggio di validazione -->
+                                <MessageStrip 
+                                    text="Selezionare una tipologia di richiesta" 
+                                    type="Error" 
+                                    showIcon="true"
+                                    class="sapUiMediumMarginBottom"
+                                    visible="{/showValidationError}"/>
+                                
+                                <!-- RadioButton Group -->
+                                <VBox>
+                                    <Label text="Tipologia della Richiesta *" class="sapUiMediumMarginBottom"/>
+                                    
+                                    <RadioButtonGroup 
+                                        id="tipologiaRichiestaGroup"
+                                        selectedIndex="{/selectedTipologia}"
+                                        select="onTipologiaSelect">
+                                        
+                                        <!-- Opzione 1: Nuova richiesta -->
+                                        <RadioButton 
+                                            text="Nuova richiesta"
+                                            tooltip="Da selezionare quando si crea una richiesta ex novo">
+                                            <layoutData>
+                                                <FlexItemData growFactor="1"/>
+                                            </layoutData>
+                                        </RadioButton>
+                                        <Text 
+                                            text="Da selezionare quando si crea una richiesta ex novo" 
+                                            class="tipologiaDescription sapUiSmallMarginBottom"/>
+                                        
+                                        <!-- Opzione 2: Precisazione -->
+                                        <RadioButton 
+                                            text="Precisazione"
+                                            tooltip="Per fornire ulteriori dettagli su una richiesta già inserita">
+                                            <layoutData>
+                                                <FlexItemData growFactor="1"/>
+                                            </layoutData>
+                                        </RadioButton>
+                                        <Text 
+                                            text="Per fornire ulteriori dettagli su una richiesta già inserita" 
+                                            class="tipologiaDescription sapUiSmallMarginBottom"/>
+                                        
+                                        <!-- Opzione 3: Variazione Dati -->
+                                        <RadioButton 
+                                            text="Variazione Dati"
+                                            tooltip="Per modificare i dati di una richiesta già validata">
+                                            <layoutData>
+                                                <FlexItemData growFactor="1"/>
+                                            </layoutData>
+                                        </RadioButton>
+                                        <Text 
+                                            text="Per modificare i dati di una richiesta già validata" 
+                                            class="tipologiaDescription"/>
+                                        
+                                    </RadioButtonGroup>
+                                </VBox>
+                                
+                            </VBox>
+                            
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <!-- Navigation Buttons -->
+                <HBox justifyContent="SpaceBetween" class="sapUiMediumMarginTop">
+                    <Button 
+                        text="Sezione Precedente" 
+                        icon="sap-icon://nav-back"
+                        enabled="false"
+                        press="onPreviousSection"/>
+                    <Button 
+                        text="Sezione Successiva" 
+                        type="Emphasized"
+                        icon="sap-icon://nav-forward"
+                        iconFirst="false"
+                        press="onNextSection"/>
+                </HBox>
+                
+            </VBox>
+        </content>
+        
+    </Page>
+    
+</mvc:View>

@@ -1,0 +1,286 @@
+/* =================================== */
+/* TTCT Application Styles */
+/* =================================== */
+
+/* Dashboard Section Tiles */
+.sectionTile {
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 100px;
+}
+
+.sectionTile:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+/* Sezione Completata (Blu) */
+.sectionCompleted {
+    background: #0070f2;
+    color: white;
+    border-color: #0070f2;
+}
+
+.sectionCompleted .sectionNumber {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.sectionCompleted .sectionTitle {
+    color: white;
+    font-size: 0.875rem;
+    line-height: 1.2;
+}
+
+/* Sezione Obbligatoria (Grigio con *) */
+.sectionRequired {
+    background: white;
+    border-color: #d9d9d9;
+}
+
+.sectionRequired .sectionNumber {
+    color: #333;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.sectionRequired .requiredIndicator {
+    color: #d32f2f;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.sectionRequired .sectionTitle {
+    color: #333;
+    font-size: 0.875rem;
+    line-height: 1.2;
+}
+
+/* Sezione Vuota (Grigio chiaro) */
+.sectionEmpty {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+}
+
+.sectionEmpty .sectionNumber {
+    color: #666;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.sectionEmpty .sectionTitle {
+    color: #666;
+    font-size: 0.875rem;
+    line-height: 1.2;
+}
+
+/* Mini Tiles per vista sezioni */
+.miniTile {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 50px;
+}
+
+.miniTile:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Mini Tile States */
+.tileCompleted {
+    background: #0070f2;
+    color: white;
+    border-color: #0070f2;
+}
+
+.tileRequired {
+    background: white;
+    border-color: #d9d9d9;
+}
+
+.tileEmpty {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+}
+
+.miniTileNumber {
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+.miniTileText {
+    font-size: 0.75rem;
+    line-height: 1.1;
+    margin-top: 2px;
+}
+
+.miniRequiredIndicator {
+    color: #d32f2f;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+/* Form Styles */
+.tipologiaDescription {
+    color: #666;
+    font-size: 0.875rem;
+    font-style: italic;
+    margin-left: 24px;
+    margin-bottom: 8px;
+}
+
+/* Progress Section */
+.progressSection {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+/* Navigation Buttons */
+.navigationButtons {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 16px;
+    margin-top: 24px;
+}
+
+/* Section Form Panel */
+.sectionPanel {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sectionPanel .sapMPanelHdr {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sectionTile {
+        width: 120px !important;
+        height: 80px !important;
+        padding: 8px;
+        margin: 2px;
+    }
+    
+    .sectionNumber {
+        font-size: 1.2rem !important;
+    }
+    
+    .sectionTitle {
+        font-size: 0.75rem !important;
+    }
+    
+    .miniTile {
+        width: 60px !important;
+        height: 40px !important;
+        padding: 4px;
+    }
+    
+    .miniTileNumber {
+        font-size: 0.75rem !important;
+    }
+    
+    .miniTileText {
+        font-size: 0.65rem !important;
+    }
+}
+
+/* Utility Classes */
+.textCenter {
+    text-align: center;
+}
+
+.fontBold {
+    font-weight: bold;
+}
+
+.colorPrimary {
+    color: #0070f2;
+}
+
+.colorError {
+    color: #d32f2f;
+}
+
+.colorSuccess {
+    color: #388e3c;
+}
+
+/* Grid Layout Helper */
+.sectionsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sectionsRow {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+/* Animation for tile state changes */
+@keyframes tileComplete {
+    0% {
+        background: white;
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        background: #0070f2;
+        transform: scale(1);
+    }
+}
+
+.sectionTile.animateComplete {
+    animation: tileComplete 0.5s ease-in-out;
+}
+
+/* Header Info Styling */
+.headerInfo {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    border: 1px solid #dee2e6;
+}
+
+.requestId {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #495057;
+}
+
+.requestStatus {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #fff3cd;
+    color: #856404;
+    border-radius: 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}

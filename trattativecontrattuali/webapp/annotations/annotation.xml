@@ -1,0 +1,259 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/here/goes/your/serviceurl/$metadata">
+        <edmx:Include Namespace="TTCTService"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="TTCTService.TTCTRequest">
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ID"/>
+                                    <PropertyValue Property="Value" Path="ID"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Status"/>
+                                    <PropertyValue Property="Value" Path="Status"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="TipoAzione"/>
+                                    <PropertyValue Property="Value" Path="TipoAzione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="DataCreazione"/>
+                                    <PropertyValue Property="Value" Path="DataCreazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="UtenteCreazione"/>
+                                    <PropertyValue Property="Value" Path="UtenteCreazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="TipologiaRichiesta"/>
+                                    <PropertyValue Property="Value" Path="TipologiaRichiesta"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="CategoriaRichiesta"/>
+                                    <PropertyValue Property="Value" Path="CategoriaRichiesta"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Priorita"/>
+                                    <PropertyValue Property="Value" Path="Priorita"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="CodiceProgramma"/>
+                                    <PropertyValue Property="Value" Path="CodiceProgramma"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="NomeProgramma"/>
+                                    <PropertyValue Property="Value" Path="NomeProgramma"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="VersioneProgramma"/>
+                                    <PropertyValue Property="Value" Path="VersioneProgramma"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="TipoMovimentazione"/>
+                                    <PropertyValue Property="Value" Path="TipoMovimentazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ModalitaMovimentazione"/>
+                                    <PropertyValue Property="Value" Path="ModalitaMovimentazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="UrgenzaMovimentazione"/>
+                                    <PropertyValue Property="Value" Path="UrgenzaMovimentazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="LocalitaPartenza"/>
+                                    <PropertyValue Property="Value" Path="LocalitaPartenza"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="LocalitaDestinazione"/>
+                                    <PropertyValue Property="Value" Path="LocalitaDestinazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="PaesePartenza"/>
+                                    <PropertyValue Property="Value" Path="PaesePartenza"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="PaeseDestinazione"/>
+                                    <PropertyValue Property="Value" Path="PaeseDestinazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="NomeControparte"/>
+                                    <PropertyValue Property="Value" Path="NomeControparte"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="CodiceControparte"/>
+                                    <PropertyValue Property="Value" Path="CodiceControparte"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="TipoControparte"/>
+                                    <PropertyValue Property="Value" Path="TipoControparte"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="PaeseControparte"/>
+                                    <PropertyValue Property="Value" Path="PaeseControparte"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="NumeroContratto"/>
+                                    <PropertyValue Property="Value" Path="NumeroContratto"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="TipoContratto"/>
+                                    <PropertyValue Property="Value" Path="TipoContratto"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="DataContratto"/>
+                                    <PropertyValue Property="Value" Path="DataContratto"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ValoreContratto"/>
+                                    <PropertyValue Property="Value" Path="ValoreContratto"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="AutorizzazioniOttenute"/>
+                                    <PropertyValue Property="Value" Path="AutorizzazioniOttenute"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="NumeroAutorizzazione"/>
+                                    <PropertyValue Property="Value" Path="NumeroAutorizzazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="DataScadenzaAutorizzazione"/>
+                                    <PropertyValue Property="Value" Path="DataScadenzaAutorizzazione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="EnteRilascio"/>
+                                    <PropertyValue Property="Value" Path="EnteRilascio"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="CodiceMateriale"/>
+                                    <PropertyValue Property="Value" Path="CodiceMateriale"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="DescrizioneMateriale"/>
+                                    <PropertyValue Property="Value" Path="DescrizioneMateriale"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="QuantitaMateriale"/>
+                                    <PropertyValue Property="Value" Path="QuantitaMateriale"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="UnitaMisura"/>
+                                    <PropertyValue Property="Value" Path="UnitaMisura"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ValoreComplessivo"/>
+                                    <PropertyValue Property="Value" Path="ValoreComplessivo"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Valuta"/>
+                                    <PropertyValue Property="Value" Path="Valuta"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="IVAInclusa"/>
+                                    <PropertyValue Property="Value" Path="IVAInclusa"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="TipoVelivolo"/>
+                                    <PropertyValue Property="Value" Path="TipoVelivolo"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ModelloVelivolo"/>
+                                    <PropertyValue Property="Value" Path="ModelloVelivolo"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="MatricolaVelivolo"/>
+                                    <PropertyValue Property="Value" Path="MatricolaVelivolo"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ConfigurazioneSpeciale"/>
+                                    <PropertyValue Property="Value" Path="ConfigurazioneSpeciale"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ElementiSupplementari"/>
+                                    <PropertyValue Property="Value" Path="ElementiSupplementari"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ServizioPostVendita"/>
+                                    <PropertyValue Property="Value" Path="ServizioPostVendita"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="SupportoTecnico"/>
+                                    <PropertyValue Property="Value" Path="SupportoTecnico"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="DataSottoscrizione"/>
+                                    <PropertyValue Property="Value" Path="DataSottoscrizione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="LuogoSottoscrizione"/>
+                                    <PropertyValue Property="Value" Path="LuogoSottoscrizione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="FirmatarioAzienda"/>
+                                    <PropertyValue Property="Value" Path="FirmatarioAzienda"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="FirmatarioControparte"/>
+                                    <PropertyValue Property="Value" Path="FirmatarioControparte"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Annesso1Presente"/>
+                                    <PropertyValue Property="Value" Path="Annesso1Presente"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Annesso1Descrizione"/>
+                                    <PropertyValue Property="Value" Path="Annesso1Descrizione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Annesso1File"/>
+                                    <PropertyValue Property="Value" Path="Annesso1File"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Annesso2Presente"/>
+                                    <PropertyValue Property="Value" Path="Annesso2Presente"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Annesso2Descrizione"/>
+                                    <PropertyValue Property="Value" Path="Annesso2Descrizione"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Annesso2File"/>
+                                    <PropertyValue Property="Value" Path="Annesso2File"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="SezioniCompletate"/>
+                                    <PropertyValue Property="Value" Path="SezioniCompletate"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="TotaleSezioni"/>
+                                    <PropertyValue Property="Value" Path="TotaleSezioni"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="PercentualeCompletamento"/>
+                                    <PropertyValue Property="Value" Path="PercentualeCompletamento"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="GeneratedFacet1"/>
+                            <PropertyValue Property="Label" String="General Information"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

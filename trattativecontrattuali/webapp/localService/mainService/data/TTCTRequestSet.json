@@ -1,0 +1,150 @@
+[
+  {
+    "ID": "TTCT-2024-001",
+    "Status": "Bozza",
+    "TipoAzione": "Nuova Richiesta",
+    "DataCreazione": "2024-07-25T10:00:00Z",
+    "UtenteCreazione": "MCAPITANIO",
+    
+    "TipologiaRichiesta": "Esportazione",
+    "CategoriaRichiesta": "Materiale Militare",
+    "Priorita": "Alta",
+    
+    "CodiceProgramma": "PRG001",
+    "NomeProgramma": "Eurofighter Typhoon",
+    "VersioneProgramma": "2024.1",
+    
+    "TipoMovimentazione": "Esportazione Definitiva",
+    "ModalitaMovimentazione": "Via Aerea",
+    "UrgenzaMovimentazione": "Normale",
+    
+    "LocalitaPartenza": "Torino",
+    "LocalitaDestinazione": "Madrid",
+    "PaesePartenza": "Italia",
+    "PaeseDestinazione": "Spagna",
+    
+    "NomeControparte": "Airbus Defence Spain",
+    "CodiceControparte": "ADS001",
+    "TipoControparte": "Cliente Governativo",
+    "PaeseControparte": "Spagna",
+    
+    "NumeroContratto": "CTR-2024-0156",
+    "TipoContratto": "Vendita Diretta",
+    "DataContratto": "2024-06-15T00:00:00Z",
+    "ValoreContratto": 2500000.00,
+    
+    "AutorizzazioniOttenute": false,
+    "NumeroAutorizzazione": "",
+    "DataScadenzaAutorizzazione": null,
+    "EnteRilascio": "",
+    
+    "CodiceMateriale": "MAT-EFA-001",
+    "DescrizioneMateriale": "Componenti Radar CAPTOR",
+    "QuantitaMateriale": 12,
+    "UnitaMisura": "PZ",
+    
+    "ValoreComplessivo": 2750000.00,
+    "Valuta": "EUR",
+    "IVAInclusa": true,
+    
+    "TipoVelivolo": "Eurofighter",
+    "ModelloVelivolo": "Typhoon T3",
+    "MatricolaVelivolo": "EF-2000",
+    "ConfigurazioneSpeciale": "Configurazione Multi-Role Standard",
+    
+    "ElementiSupplementari": "Supporto tecnico in loco per 24 mesi",
+    "ServizioPostVendita": true,
+    "SupportoTecnico": true,
+    
+    "DataSottoscrizione": "2024-07-20T00:00:00Z",
+    "LuogoSottoscrizione": "Torino, Italia",
+    "FirmatarioAzienda": "Dr. Marco Rossi",
+    "FirmatarioControparte": "Col. Miguel Rodriguez",
+    
+    "Annesso1Presente": true,
+    "Annesso1Descrizione": "Specifiche Tecniche Componenti",
+    "Annesso1File": "specifiche_tecniche_v2.pdf",
+    
+    "Annesso2Presente": true,
+    "Annesso2Descrizione": "Certificazioni di Conformità",
+    "Annesso2File": "certificazioni_CE.pdf",
+    
+    "SezioniCompletate": 8,
+    "TotaleSezioni": 14,
+    "PercentualeCompletamento": 57.14
+  },
+  {
+    "ID": "TTCT-2024-002",
+    "Status": "Inviata",
+    "TipoAzione": "Modifica Richiesta",
+    "DataCreazione": "2024-07-24T14:30:00Z",
+    "UtenteCreazione": "GBIANCHI",
+    
+    "TipologiaRichiesta": "Importazione",
+    "CategoriaRichiesta": "Componenti Civili",
+    "Priorita": "Media",
+    
+    "CodiceProgramma": "PRG002", 
+    "NomeProgramma": "Sistema Difesa Aerea",
+    "VersioneProgramma": "2024.2",
+    
+    "TipoMovimentazione": "Importazione Temporanea",
+    "ModalitaMovimentazione": "Via Terra",
+    "UrgenzaMovimentazione": "Urgente",
+    
+    "LocalitaPartenza": "Monaco",
+    "LocalitaDestinazione": "Milano",
+    "PaesePartenza": "Germania",
+    "PaeseDestinazione": "Italia",
+    
+    "NomeControparte": "Rheinmetall AG",
+    "CodiceControparte": "RMG001",
+    "TipoControparte": "Fornitore Industriale",
+    "PaeseControparte": "Germania",
+    
+    "NumeroContratto": "CTR-2024-0089",
+    "TipoContratto": "Accordo di Cooperazione",
+    "DataContratto": "2024-05-10T00:00:00Z",
+    "ValoreContratto": 1850000.00,
+    
+    "AutorizzazioniOttenute": true,
+    "NumeroAutorizzazione": "AUTH-2024-0045",
+    "DataScadenzaAutorizzazione": "2025-05-10T00:00:00Z",
+    "EnteRilascio": "Ministero della Difesa",
+    
+    "CodiceMateriale": "MAT-DEF-002",
+    "DescrizioneMateriale": "Sistemi di Controllo Fuoco",
+    "QuantitaMateriale": 6,
+    "UnitaMisura": "SET",
+    
+    "ValoreComplessivo": 2100000.00,
+    "Valuta": "EUR",
+    "IVAInclusa": false,
+    
+    "TipoVelivolo": "N/A",
+    "ModelloVelivolo": "N/A",
+    "MatricolaVelivolo": "",
+    "ConfigurazioneSpeciale": "Sistema Terra-Aria",
+    
+    "ElementiSupplementari": "Training operativo per 12 mesi",
+    "ServizioPostVendita": true,
+    "SupportoTecnico": false,
+    
+    "DataSottoscrizione": "2024-07-18T00:00:00Z",
+    "LuogoSottoscrizione": "Milano, Italia",
+    "FirmatarioAzienda": "Ing. Giuseppe Bianchi",
+    "FirmatarioControparte": "Dr. Klaus Weber",
+    
+    "Annesso1Presente": false,
+    "Annesso1Descrizione": "",
+    "Annesso1File": "",
+    
+    "Annesso2Presente": true,
+    "Annesso2Descrizione": "Documentazione di Trasporto",
+    "Annesso2File": "docs_trasporto.pdf",
+    
+    "SezioniCompletate": 14,
+    "TotaleSezioni": 14,
+    "PercentualeCompletamento": 100.00
+  }
+]
