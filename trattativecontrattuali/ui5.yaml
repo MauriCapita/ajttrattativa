@@ -4,17 +4,27 @@ specVersion: "3.1"
 metadata:
   name: com.company.trattativecontrattuali.trattativecontrattuali
 type: application
+framework:
+  name: SAPUI5
+  version: 1.138.1
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.fe.templates
+    - name: sap.ushell
+    - name: themelib_sap_horizon
 server:
   customMiddleware:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ignoreCertError: false
         ui5:
           path:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
+          version: 1.138.1
         backend:
           - path: /here
             url: http://localhost
@@ -37,6 +47,13 @@ server:
           overridesToOverride: true
         excludePatterns:
           - /Component-preload.js
+    - name: fiori-tools-servestatic
+      afterMiddleware: compression
+      configuration:
+        paths:
+          - /resources/sap/ui/fl
+          - /resources/sap/m
+          - /resources/sap/ui/core
 builder:
   customTasks:
     - name: ui5-tooling-transpile-task

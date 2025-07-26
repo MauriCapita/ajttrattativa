@@ -27,8 +27,12 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
+        component: com.company.trattativecontrattuali.trattativecontrattuali
         flp:
           theme: sap_horizon
+        mock:
+          flexChanges: webapp/changes/flexibility-bundle.json
+
     - name: ui5-tooling-transpile-middleware
       afterMiddleware: compression
       configuration:

@@ -5,6 +5,8 @@
         "skipLibCheck": true,
         "allowJs": true,
         "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "strictPropertyInitialization": false,
         "moduleResolution": "node",
         "rootDir": "./webapp",

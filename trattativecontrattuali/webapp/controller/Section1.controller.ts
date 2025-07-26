@@ -23,6 +23,10 @@ interface Router {
     navTo(route: string): void;
 }
 
+interface SavedData {
+    tipologiaRichiesta: string | null;
+}
+
 /**
  * @namespace com.company.trattativecontrattuali.trattativecontrattuali.controller
  */
@@ -56,20 +60,27 @@ export default class Section1 extends Controller {
         this.getView()?.setModel(oModel);
         
         // Carica dati esistenti se presenti
-        this.loadExistingData();
+        void this.loadExistingData().catch(() => {
+            MessageToast.show("Errore nel caricamento dei dati iniziali");
+        });
     }
-
+    
     public onTipologiaSelect(oEvent: Event): void {
-        // Cast esplicito al tipo RadioButtonGroup
         const oRadioButtonGroup = oEvent.getSource() as unknown as RadioButtonGroup;
         const iSelectedIndex = oRadioButtonGroup.getSelectedIndex();
+        
         // Aggiorna il modello
         this.sectionData.selectedTipologia = iSelectedIndex;
         this.sectionData.showValidationError = false;
+        
         const oModel = this.getView()?.getModel() as JSONModel;
         oModel.refresh();
+        
         // Salva automaticamente la selezione
-        this.autoSave();
+        void this.saveSection().catch(() => {
+            MessageToast.show("Errore nel salvataggio automatico");
+        });
+        
         // Mostra feedback
         const selectedOption = this.sectionData.tipologiaOptions[iSelectedIndex];
         if (selectedOption) {
@@ -83,7 +94,7 @@ export default class Section1 extends Controller {
         this.navigateToSection("dashboard");
     }
 
-    public onNextSection(): void {
+    public async onNextSection(): Promise<void> {
         // Valida che sia stata fatta una selezione
         if (this.sectionData.selectedTipologia === -1) {
             this.sectionData.showValidationError = true;
@@ -95,20 +106,28 @@ export default class Section1 extends Controller {
         }
 
         // Salva i dati della sezione
-        this.saveSection();
+        await this.saveSection().catch(() => {
+            MessageToast.show("Errore nel salvataggio");
+            return;
+        });
         
         // Naviga alla sezione 2
         this.navigateToSection("2");
     }
 
-    public onSaveDraft(): void {
-        this.saveSection();
+    public async onSaveDraft(): Promise<void> {
+        await this.saveSection().catch(() => {
+            MessageToast.show("Errore nel salvataggio della bozza");
+        });
         MessageToast.show("Sezione 1 salvata in bozza");
     }
 
-    public onSubmitToTC(): void {
+    public async onSubmitToTC(): Promise<void> {
         // Per ora, salva e mostra messaggio
-        this.saveSection();
+        await this.saveSection().catch(() => {
+            MessageToast.show("Errore nel salvataggio");
+            return;
+        });
         MessageToast.show("Funzione di invio non ancora disponibile dalla sezione");
     }
 
@@ -117,52 +136,75 @@ export default class Section1 extends Controller {
         this.navigateToSection("dashboard");
     }
 
-    private loadExistingData(): void {
-        // Simula caricamento dati esistenti dal backend
-        const savedData = this.getSavedSectionData();
-        
-        if (savedData && savedData.tipologiaRichiesta) {
-            // Trova l'indice corrispondente al valore salvato
-            const index = this.sectionData.tipologiaOptions.findIndex(
-                option => option.value === savedData.tipologiaRichiesta
-            );
-            
-            if (index !== -1) {
-                this.sectionData.selectedTipologia = index;
-                const oModel = this.getView()?.getModel() as JSONModel;
-                oModel.refresh();
-            }
+    public onBeforeRendering(): void {
+        // Preparazione dati prima del rendering
+        void this.loadExistingData().catch(() => {
+            MessageToast.show("Errore nel caricamento dei dati");
+        });
+    }
+
+    public onAfterRendering(): void {
+        // Setup UI dopo il rendering
+        this.updateUIState();
+    }
+
+    public onExit(): void {
+        // Cleanup quando il controller viene distrutto
+    }
+
+    private updateUIState(): void {
+        const oView = this.getView();
+        if (!oView) { return; }
+
+        const oModel = oView.getModel() as JSONModel;
+        if (!oModel) { return; }
+
+        // Aggiorna stato UI in base ai dati
+        if (this.sectionData.selectedTipologia === -1) {
+            this.sectionData.showValidationError = false;
         }
+        oModel.refresh();
     }
 
-    private getSavedSectionData(): { tipologiaRichiesta: string | null } {
-        // Simula recupero dati dal backend
-        // In produzione, farà una chiamata OData per recuperare i dati della sezione 1
-        return {
-            tipologiaRichiesta: null // o un valore salvato precedentemente
-        };
-    }
-
-    private autoSave(): void {
-        // Auto-salvataggio ogni volta che l'utente fa una selezione
-        // In produzione, implementare debounce migliore se necessario
-        this.saveSection();
-    }
-
-    private saveSection(): void {
+    private async saveSection(): Promise<void> {
         if (this.sectionData.selectedTipologia === -1) {
             return; // Non salvare se non c'è selezione
         }
-        // Simula salvataggio nel backend
-        // In produzione, farà una chiamata OData POST/PUT
-        this.saveSectionData();
+
+        try {
+            // Simula salvataggio nel backend
+            await this.saveSectionData();
+            MessageToast.show("Sezione salvata con successo");
+        } catch (error) {
+            MessageToast.show("Errore durante il salvataggio");
+        }
     }
 
-    private saveSectionData(): void {
-        // Simula chiamata al backend per salvare i dati della sezione
-        // In produzione, userebbe il modello OData per salvare
-        // Aggiorna anche il progresso globale
-        this.updateGlobalProgress();
+    private async loadExistingData(): Promise<void> {
+        try {
+            const savedData = await this.getSavedSectionData();
+            if (savedData && savedData.tipologiaRichiesta) {
+                const index = this.sectionData.tipologiaOptions.findIndex(
+                    option => option.value === savedData.tipologiaRichiesta
+                );
+                
+                if (index !== -1) {
+                    this.sectionData.selectedTipologia = index;
+                    this.updateUIState();
+                }
+            }
+        } catch (error) {
+            MessageToast.show("Errore nel caricamento dei dati");
+        }
+    }
+
+    private saveSectionData(): Promise<void> {
+        return new Promise((resolve) => {
+            // Simula chiamata al backend per salvare i dati della sezione
+            // In produzione, userebbe il modello OData per salvare
+            this.updateGlobalProgress();
+            resolve();
+        });
     }
 
     private updateGlobalProgress(): void {
@@ -196,5 +238,14 @@ export default class Section1 extends Controller {
                     oRouter.navTo("dashboard");
             }
         }
+    }
+
+    private async getSavedSectionData(): Promise<SavedData> {
+        // Simula recupero dati dal backend
+        return new Promise((resolve) => {
+            resolve({
+                tipologiaRichiesta: null // o un valore salvato precedentemente
+            });
+        });
     }
 }

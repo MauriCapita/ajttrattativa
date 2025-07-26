@@ -8,7 +8,11 @@
     "sapui5"
   ],
   "main": "webapp/index.html",
-  "dependencies": {},
+  "dependencies": {
+    "@sapui5/ts-types-esm": "1.138.1",
+    "@types/jquery": "^3.5.29",
+    "jquery": "^3.7.1"
+  },
   "devDependencies": {
     "@ui5/cli": "^4.0.16",
     "@sap/ux-ui5-tooling": "1",
@@ -21,6 +25,7 @@
     "@sap-ux/ui5-middleware-fe-mockserver": "2"
   },
   "scripts": {
+    "postinstall": "ui5 use SAPUI5@1.138.1",
     "start": "echo \\\"This application was generated with a local metadata file and does not reference a live server. Please add the required server configuration or start this application with mock data using the target: `npm run start-mock`.\\\"",
     "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flp.html#app-preview\"",
     "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",

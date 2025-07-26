@@ -19,11 +19,36 @@ interface AppData {
     sections: { [key: string]: SectionStatus };
 }
 
+interface EventBusPayload {
+    sectionId: string;
+    completed: boolean;
+}
+
+interface EventProvider {
+    getCustomData(): CustomData[];
+}
+
+interface EventBusHandler {
+    (channelId: string, eventId: string, data: object): void;
+}
+
 /**
  * @namespace com.company.trattativecontrattuali.trattativecontrattuali.controller
  */
 export default class Dashboard extends Controller {
-    
+    private readonly onSectionCompletedBound: EventBusHandler;
+
+    constructor(id: string = "Dashboard") {
+        super(id);
+        // Definiamo l'handler dell'evento
+        this.onSectionCompletedBound = (channelId: string, eventId: string, data: object): void => {
+            const payload = data as EventBusPayload;
+            if (payload && payload.sectionId && payload.completed) {
+                this.markSectionCompleted(payload.sectionId);
+            }
+        };
+    }
+
     private appData: AppData = {
         progressText: "0 di 14 sezioni completate",
         completedSections: 0,
@@ -54,23 +79,32 @@ export default class Dashboard extends Controller {
             oView.setModel(oModel);
         }
         
+        // Subscribe agli eventi di completamento sezioni
+        const eventBus = sap.ui.getCore().getEventBus();
+        eventBus.subscribe("ttct", "sectionCompleted", this.onSectionCompletedBound);
+        
         // Carica dati salvati (se esistenti)
         this.loadSavedProgress();
     }
 
+    public onExit(): void {
+        // Cleanup quando il controller viene distrutto
+        const eventBus = sap.ui.getCore().getEventBus();
+        eventBus.unsubscribe("ttct", "sectionCompleted", this.onSectionCompletedBound);
+    }
+
     public onSectionPress(oEvent: Event): void {
-        const oSource = oEvent.getSource() as unknown as { getCustomData: () => CustomData[] };
-        const aCustomData: CustomData[] = oSource && typeof oSource.getCustomData === "function" ? oSource.getCustomData() : [];
+        const oSource = oEvent.getSource() as unknown as EventProvider;
+        const aCustomData = oSource.getCustomData();
         let sSection = "";
+        
         if (Array.isArray(aCustomData) && aCustomData.length > 0) {
-            for (let i = 0; i < aCustomData.length; i++) {
-                const oCustomData = aCustomData[i];
-                if (oCustomData && oCustomData.getKey() === "section") {
-                    sSection = oCustomData.getValue() as string;
-                    break;
-                }
+            const oCustomData = aCustomData.find(data => data.getKey() === "section");
+            if (oCustomData) {
+                sSection = oCustomData.getValue() as string;
             }
         }
+        
         if (sSection) {
             this.navigateToSection(sSection);
         }

@@ -16,36 +16,13 @@
       "toolsId": "8b4cbc26-63c2-43f8-bd68-b8ba05ccfdfc"
     },
     "dataSources": {
-      "annotation": {
-        "type": "ODataAnnotation",
-        "uri": "annotations/annotation.xml",
-        "settings": {
-          "localUri": "annotations/annotation.xml"
-        }
-      },
       "mainService": {
         "uri": "/here/odata/v4/TTCTService/",
         "type": "OData",
         "settings": {
-          "annotations": [
-            "annotation"
-          ],
+          "annotations": [],
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "4.0"
-        }
-      }
-    },
-    "crossNavigation": {
-      "inbounds": {
-        "TTCT-manage": {
-          "semanticObject": "TTCT",
-          "action": "manage",
-          "title": "{{TTCT-manage.flpTitle}}",
-          "subTitle": "{{TTCT-manage.flpSubtitle}}",
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          }
         }
       }
     }
@@ -67,13 +44,16 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": false,
+    "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.138.1",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.fe.templates": {}
+        "sap.ui.unified": {},
+        "sap.ui.layout": {},
+        "sap.f": {},
+        "sap.ui.fl": {}
       }
     },
     "contentDensities": {
@@ -88,36 +68,21 @@
           "supportedLocales": ["", "en"],
           "fallbackLocale": "en"
         }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {
-          "operationMode": "Server",
-          "autoExpandSelect": true,
-          "earlyRequests": true
-        }
-      },
-      "@i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "uri": "i18n/i18n.properties"
       }
     },
-    "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
+    "rootView": {
+      "viewName": "com.company.trattativecontrattuali.trattativecontrattuali.view.App",
+      "type": "XML",
+      "id": "app"
     },
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "com.company.trattativecontrattuali.trattativecontrattuali.view",
+        "path": "com.company.trattativecontrattuali.trattativecontrattuali.view",
         "controlId": "app",
         "controlAggregation": "pages",
-        "transition": "slide"
+        "async": true
       },
       "routes": [
         {
@@ -126,167 +91,21 @@
           "target": "dashboard"
         },
         {
-          "pattern": "dashboard",
-          "name": "dashboardExplicit",
-          "target": "dashboard"
-        },
-        {
           "pattern": "section1",
           "name": "section1",
           "target": "section1"
-        },
-        {
-          "pattern": "section2",
-          "name": "section2",
-          "target": "section2"
-        },
-        {
-          "pattern": "section3",
-          "name": "section3",
-          "target": "section3"
-        },
-        {
-          "pattern": "section4",
-          "name": "section4",
-          "target": "section4"
-        },
-        {
-          "pattern": "section5",
-          "name": "section5",
-          "target": "section5"
-        },
-        {
-          "pattern": "section6",
-          "name": "section6",
-          "target": "section6"
-        },
-        {
-          "pattern": "section7",
-          "name": "section7",
-          "target": "section7"
-        },
-        {
-          "pattern": "section8",
-          "name": "section8",
-          "target": "section8"
-        },
-        {
-          "pattern": "section9",
-          "name": "section9",
-          "target": "section9"
-        },
-        {
-          "pattern": "section10",
-          "name": "section10",
-          "target": "section10"
-        },
-        {
-          "pattern": "section11",
-          "name": "section11",
-          "target": "section11"
-        },
-        {
-          "pattern": "section12",
-          "name": "section12",
-          "target": "section12"
-        },
-        {
-          "pattern": "section13",
-          "name": "section13",
-          "target": "section13"
-        },
-        {
-          "pattern": "section14",
-          "name": "section14",
-          "target": "section14"
-        },
-        {
-          "pattern": "TTCTRequestSet({key}):?query:",
-          "name": "TTCTRequestSetObjectPage",
-          "target": "dashboard"
         }
       ],
       "targets": {
         "dashboard": {
-          "viewType": "XML",
           "viewId": "dashboard",
           "viewName": "Dashboard"
         },
         "section1": {
-          "viewType": "XML",
           "viewId": "section1",
           "viewName": "Section1"
-        },
-        "section2": {
-          "viewType": "XML",
-          "viewId": "section2",
-          "viewName": "Section2"
-        },
-        "section3": {
-          "viewType": "XML",
-          "viewId": "section3",
-          "viewName": "Section3"
-        },
-        "section4": {
-          "viewType": "XML",
-          "viewId": "section4",
-          "viewName": "Section4"
-        },
-        "section5": {
-          "viewType": "XML",
-          "viewId": "section5",
-          "viewName": "Section5"
-        },
-        "section6": {
-          "viewType": "XML",
-          "viewId": "section6",
-          "viewName": "Section6"
-        },
-        "section7": {
-          "viewType": "XML",
-          "viewId": "section7",
-          "viewName": "Section7"
-        },
-        "section8": {
-          "viewType": "XML",
-          "viewId": "section8",
-          "viewName": "Section8"
-        },
-        "section9": {
-          "viewType": "XML",
-          "viewId": "section9",
-          "viewName": "Section9"
-        },
-        "section10": {
-          "viewType": "XML",
-          "viewId": "section10",
-          "viewName": "Section10"
-        },
-        "section11": {
-          "viewType": "XML",
-          "viewId": "section11",
-          "viewName": "Section11"
-        },
-        "section12": {
-          "viewType": "XML",
-          "viewId": "section12",
-          "viewName": "Section12"
-        },
-        "section13": {
-          "viewType": "XML",
-          "viewId": "section13",
-          "viewName": "Section13"
-        },
-        "section14": {
-          "viewType": "XML",
-          "viewId": "section14",
-          "viewName": "Section14"
         }
       }
     }
-  },
-  "sap.fiori": {
-    "registrationIds": [],
-    "archeType": "transactional"
   }
 }
