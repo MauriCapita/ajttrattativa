@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <mvc:View
     controllerName="com.company.trattativecontrattuali.trattativecontrattuali.controller.Dashboard"
     xmlns:mvc="sap.ui.core.mvc"
@@ -42,237 +43,209 @@
                 <VBox>
                     
                     <!-- Prima riga: 6 sezioni -->
-                    <HBox class="sapUiSmallMarginBottom">
+                    <HBox class="sapUiSmallMarginBottom" spacing="0.5rem">
                         
                         <!-- Sezione 1 - Completata (blu) -->
-                        <VBox class="sectionTile sectionCompleted" width="150px" height="100px">
-                            <core:Icon src="sap-icon://form" size="1.5rem" color="#0070f2"/>
-                            <Text text="1" class="sectionNumber"/>
-                            <Text text="Tipologia della Richiesta" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionCompleted" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="1"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://form" size="1.5rem" color="white"/>
+                                <Text text="1" class="sectionNumber"/>
+                                <Text text="Tipologia della Richiesta" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 2 - Obbligatoria (*) -->
-                        <VBox class="sectionTile sectionRequired" width="150px" height="100px">
-                            <core:Icon src="sap-icon://program-triangles" size="1.5rem" color="#666"/>
-                            <HBox>
-                                <Text text="2" class="sectionNumber"/>
-                                <Text text=" *" class="requiredIndicator"/>
-                            </HBox>
-                            <Text text="Programma" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionRequired" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="2"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://program-triangles" size="1.5rem" color="#666"/>
+                                <HBox>
+                                    <Text text="2" class="sectionNumber"/>
+                                    <Text text=" *" class="requiredIndicator"/>
+                                </HBox>
+                                <Text text="Programma" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 3 - Obbligatoria (*) -->
-                        <VBox class="sectionTile sectionRequired" width="150px" height="100px">
-                            <core:Icon src="sap-icon://shipping-status" size="1.5rem" color="#666"/>
-                            <HBox>
-                                <Text text="3" class="sectionNumber"/>
-                                <Text text=" *" class="requiredIndicator"/>
-                            </HBox>
-                            <Text text="Tipologia di Movimentazione" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionRequired" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="3"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://shipping-status" size="1.5rem" color="#666"/>
+                                <HBox>
+                                    <Text text="3" class="sectionNumber"/>
+                                    <Text text=" *" class="requiredIndicator"/>
+                                </HBox>
+                                <Text text="Tipologia di Movimentazione" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 4 - Obbligatoria (*) -->
-                        <VBox class="sectionTile sectionRequired" width="150px" height="100px">
-                            <core:Icon src="sap-icon://map" size="1.5rem" color="#666"/>
-                            <HBox>
-                                <Text text="4" class="sectionNumber"/>
-                                <Text text=" *" class="requiredIndicator"/>
-                            </HBox>
-                            <Text text="Località" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionRequired" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="4"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://map" size="1.5rem" color="#666"/>
+                                <HBox>
+                                    <Text text="4" class="sectionNumber"/>
+                                    <Text text=" *" class="requiredIndicator"/>
+                                </HBox>
+                                <Text text="Località" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 5 - Obbligatoria (*) -->
-                        <VBox class="sectionTile sectionRequired" width="150px" height="100px">
-                            <core:Icon src="sap-icon://supplier" size="1.5rem" color="#666"/>
-                            <HBox>
-                                <Text text="5" class="sectionNumber"/>
-                                <Text text=" *" class="requiredIndicator"/>
-                            </HBox>
-                            <Text text="Controparte Contrattuale" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionRequired" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="5"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://supplier" size="1.5rem" color="#666"/>
+                                <HBox>
+                                    <Text text="5" class="sectionNumber"/>
+                                    <Text text=" *" class="requiredIndicator"/>
+                                </HBox>
+                                <Text text="Controparte Contrattuale" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 6 - Obbligatoria (*) -->
-                        <VBox class="sectionTile sectionRequired" width="150px" height="100px">
-                            <core:Icon src="sap-icon://document" size="1.5rem" color="#666"/>
-                            <HBox>
-                                <Text text="6" class="sectionNumber"/>
-                                <Text text=" *" class="requiredIndicator"/>
-                            </HBox>
-                            <Text text="Business/Contratto di Riferimento" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionRequired" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="6"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://document" size="1.5rem" color="#666"/>
+                                <HBox>
+                                    <Text text="6" class="sectionNumber"/>
+                                    <Text text=" *" class="requiredIndicator"/>
+                                </HBox>
+                                <Text text="Business/Contratto di Riferimento" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                     </HBox>
                     
                     <!-- Seconda riga: 6 sezioni -->
-                    <HBox class="sapUiSmallMarginBottom">
+                    <HBox class="sapUiSmallMarginBottom" spacing="0.5rem">
                         
                         <!-- Sezione 7 - Vuota -->
-                        <VBox class="sectionTile sectionEmpty" width="150px" height="100px">
-                            <core:Icon src="sap-icon://key" size="1.5rem" color="#666"/>
-                            <Text text="7" class="sectionNumber"/>
-                            <Text text="Autorizzazioni già Ottenute" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionEmpty" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="7"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://key" size="1.5rem" color="#666"/>
+                                <Text text="7" class="sectionNumber"/>
+                                <Text text="Autorizzazioni già Ottenute" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 8 - Obbligatoria (*) -->
-                        <VBox class="sectionTile sectionRequired" width="150px" height="100px">
-                            <core:Icon src="sap-icon://product" size="1.5rem" color="#666"/>
-                            <HBox>
-                                <Text text="8" class="sectionNumber"/>
-                                <Text text=" *" class="requiredIndicator"/>
-                            </HBox>
-                            <Text text="Materiali Interessati" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionRequired" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="8"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://product" size="1.5rem" color="#666"/>
+                                <HBox>
+                                    <Text text="8" class="sectionNumber"/>
+                                    <Text text=" *" class="requiredIndicator"/>
+                                </HBox>
+                                <Text text="Materiali Interessati" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 9 - Obbligatoria (*) -->
-                        <VBox class="sectionTile sectionRequired" width="150px" height="100px">
-                            <core:Icon src="sap-icon://money-bills" size="1.5rem" color="#666"/>
-                            <HBox>
-                                <Text text="9" class="sectionNumber"/>
-                                <Text text=" *" class="requiredIndicator"/>
-                            </HBox>
-                            <Text text="Valore Complessivo" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionRequired" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="9"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://money-bills" size="1.5rem" color="#666"/>
+                                <HBox>
+                                    <Text text="9" class="sectionNumber"/>
+                                    <Text text=" *" class="requiredIndicator"/>
+                                </HBox>
+                                <Text text="Valore Complessivo" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 10 - Vuota -->
-                        <VBox class="sectionTile sectionEmpty" width="150px" height="100px">
-                            <core:Icon src="sap-icon://vehicle" size="1.5rem" color="#666"/>
-                            <Text text="10" class="sectionNumber"/>
-                            <Text text="Configurazione Velivoli" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionEmpty" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="10"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://vehicle" size="1.5rem" color="#666"/>
+                                <Text text="10" class="sectionNumber"/>
+                                <Text text="Configurazione Velivoli" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 11 - Vuota -->
-                        <VBox class="sectionTile sectionEmpty" width="150px" height="100px">
-                            <core:Icon src="sap-icon://add-equipment" size="1.5rem" color="#666"/>
-                            <Text text="11" class="sectionNumber"/>
-                            <Text text="Elementi Supplementari" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionEmpty" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="11"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://add-equipment" size="1.5rem" color="#666"/>
+                                <Text text="11" class="sectionNumber"/>
+                                <Text text="Elementi Supplementari" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 12 - Obbligatoria (*) -->
-                        <VBox class="sectionTile sectionRequired" width="150px" height="100px">
-                            <core:Icon src="sap-icon://signature" size="1.5rem" color="#666"/>
-                            <HBox>
-                                <Text text="12" class="sectionNumber"/>
-                                <Text text=" *" class="requiredIndicator"/>
-                            </HBox>
-                            <Text text="Estremi Sottoscrizione" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionRequired" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="12"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://signature" size="1.5rem" color="#666"/>
+                                <HBox>
+                                    <Text text="12" class="sectionNumber"/>
+                                    <Text text=" *" class="requiredIndicator"/>
+                                </HBox>
+                                <Text text="Estremi Sottoscrizione" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                     </HBox>
                     
                     <!-- Terza riga: 2 sezioni -->
-                    <HBox>
+                    <HBox spacing="0.5rem">
                         
                         <!-- Sezione 13 - Vuota -->
-                        <VBox class="sectionTile sectionEmpty" width="150px" height="100px">
-                            <core:Icon src="sap-icon://attachment" size="1.5rem" color="#666"/>
-                            <Text text="13" class="sectionNumber"/>
-                            <Text text="Annesso 1" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionEmpty" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="13"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://attachment" size="1.5rem" color="#666"/>
+                                <Text text="13" class="sectionNumber"/>
+                                <Text text="Annesso 1" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                         <!-- Sezione 14 - Vuota -->
-                        <VBox class="sectionTile sectionEmpty" width="150px" height="100px">
-                            <core:Icon src="sap-icon://attachment" size="1.5rem" color="#666"/>
-                            <Text text="14" class="sectionNumber"/>
-                            <Text text="Annesso 2" textAlign="Center" class="sectionTitle"/>
-                            <layoutData>
-                                <FlexItemData growFactor="1"/>
-                            </layoutData>
-                            <press>onSectionPress</press>
+                        <Button class="sectionTile sectionEmpty" width="150px" height="100px" press="onSectionPress">
                             <customData>
                                 <core:CustomData key="section" value="14"/>
                             </customData>
-                        </VBox>
+                            <VBox alignItems="Center" justifyContent="Center" height="100%">
+                                <core:Icon src="sap-icon://attachment" size="1.5rem" color="#666"/>
+                                <Text text="14" class="sectionNumber"/>
+                                <Text text="Annesso 2" textAlign="Center" class="sectionTitle"/>
+                            </VBox>
+                        </Button>
                         
                     </HBox>
                     

@@ -2,294 +2,292 @@ import Controller from "sap/ui/core/mvc/Controller";
 import Event from "sap/ui/base/Event";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import MessageToast from "sap/m/MessageToast";
-import type CustomData from "sap/ui/core/CustomData";
 import type UIComponent from "sap/ui/core/UIComponent";
 import type Router from "sap/ui/core/routing/Router";
 
-interface SectionStatus {
-    completed: boolean;
-    required: boolean;
-    isEmpty: boolean;
+interface Section1Data {
+    selectedTipologia: number;
+    showValidationError: boolean;
+    tipologiaOptions: {
+        text: string;
+        description: string;
+        value: string;
+    }[];
 }
 
-interface AppData {
-    progressText: string;
-    completedSections: number;
-    totalSections: number;
-    sections: { [key: string]: SectionStatus };
+interface RadioButtonGroup {
+    getSelectedIndex(): number;
 }
 
-interface EventBusPayload {
-    sectionId: string;
-    completed: boolean;
-}
-
-interface EventProvider {
-    getCustomData(): CustomData[];
-}
-
-interface EventBusHandler {
-    (channelId: string, eventId: string, data: object): void;
+interface SavedData {
+    tipologiaRichiesta: string | null;
 }
 
 /**
  * @namespace com.company.trattativecontrattuali.trattativecontrattuali.controller
  */
-export default class Dashboard extends Controller {
-    private readonly onSectionCompletedBound: EventBusHandler;
-
-    constructor(id: string = "Dashboard") {
-        super(id);
-        // Definiamo l'handler dell'evento
-        this.onSectionCompletedBound = (channelId: string, eventId: string, data: object): void => {
-            const payload = data as EventBusPayload;
-            if (payload && payload.sectionId && payload.completed) {
-                this.markSectionCompleted(payload.sectionId);
+export default class Section1 extends Controller {
+    
+    private sectionData: Section1Data = {
+        selectedTipologia: -1, // -1 = nessuna selezione
+        showValidationError: false,
+        tipologiaOptions: [
+            {
+                text: "Nuova richiesta",
+                description: "Da selezionare quando si crea una richiesta ex novo",
+                value: "NUOVA"
+            },
+            {
+                text: "Precisazione", 
+                description: "Per fornire ulteriori dettagli su una richiesta già inserita",
+                value: "PRECISAZIONE"
+            },
+            {
+                text: "Variazione Dati",
+                description: "Per modificare i dati di una richiesta già validata", 
+                value: "VARIAZIONE"
             }
-        };
-    }
-
-    private appData: AppData = {
-        progressText: "0 di 14 sezioni completate",
-        completedSections: 0,
-        totalSections: 14,
-        sections: {
-            "1": { completed: true, required: true, isEmpty: false },
-            "2": { completed: false, required: true, isEmpty: true },
-            "3": { completed: false, required: true, isEmpty: true },
-            "4": { completed: false, required: true, isEmpty: true },
-            "5": { completed: false, required: true, isEmpty: true },
-            "6": { completed: false, required: true, isEmpty: true },
-            "7": { completed: false, required: false, isEmpty: true },
-            "8": { completed: false, required: true, isEmpty: true },
-            "9": { completed: false, required: true, isEmpty: true },
-            "10": { completed: false, required: false, isEmpty: true },
-            "11": { completed: false, required: false, isEmpty: true },
-            "12": { completed: false, required: true, isEmpty: true },
-            "13": { completed: false, required: false, isEmpty: true },
-            "14": { completed: false, required: false, isEmpty: true }
-        }
+        ]
     };
 
     public onInit(): void {
-        // Inizializza il modello dati
-        const oModel = new JSONModel(this.appData);
-        const oView = this.getView();
-        if (oView) {
-            oView.setModel(oModel);
-        }
-        
-        // Subscribe agli eventi di completamento sezioni
-        const eventBus = sap.ui.getCore().getEventBus();
-        eventBus.subscribe("ttct", "sectionCompleted", this.onSectionCompletedBound);
-        
-        // Carica dati salvati (se esistenti)
-        this.loadSavedProgress();
-    }
-
-    public onExit(): void {
-        // Cleanup quando il controller viene distrutto
-        const eventBus = sap.ui.getCore().getEventBus();
-        eventBus.unsubscribe("ttct", "sectionCompleted", this.onSectionCompletedBound);
-    }
-
-    public onSectionPress(oEvent: Event): void {
-        const oSource = oEvent.getSource() as unknown as EventProvider;
-        const aCustomData = oSource.getCustomData();
-        let sSection = "";
-        
-        if (Array.isArray(aCustomData) && aCustomData.length > 0) {
-            const oCustomData = aCustomData.find(data => data.getKey() === "section");
-            if (oCustomData) {
-                sSection = oCustomData.getValue() as string;
-            }
-        }
-        
-        if (sSection) {
-            this.navigateToSection(sSection);
-        }
-    }
-
-    public onSaveDraft(): void {
-        // Salva bozza
-        MessageToast.show("Bozza salvata con successo");
-        
-        // Simula salvataggio
-        this.saveProgress();
-    }
-
-    public onSubmitToTC(): void {
-        // Verifica che le sezioni obbligatorie siano completate
-        const requiredSections = Object.keys(this.appData.sections).filter(key => 
-            this.appData.sections[key].required
-        );
-        
-        const completedRequired = requiredSections.filter(key => 
-            this.appData.sections[key].completed
-        );
-
-        if (completedRequired.length < requiredSections.length) {
-            MessageToast.show("Completare tutte le sezioni obbligatorie prima di inviare");
-            return;
-        }
-
-        MessageToast.show("Richiesta inviata al Commercio Internazionale");
-        
-        // Simula invio
-        this.submitRequest();
-    }
-
-    public onNavBack(): void {
-        // Naviga indietro usando il router UI5
-        const oComponent = this.getOwnerComponent() as UIComponent & { getRouter: () => Router };
-        if (oComponent && typeof oComponent.getRouter === "function") {
-            const oRouter = oComponent.getRouter();
-            if (oRouter && typeof oRouter.navTo === "function") {
-                oRouter.navTo("dashboard"); // Sostituisci con la route corretta se necessario
-                return;
-            }
-        }
-        MessageToast.show("Impossibile tornare indietro");
-    }
-
-    private navigateToSection(sSection: string): void {
-        const oComponent = this.getOwnerComponent() as UIComponent & { getRouter: () => Router };
-        if (!oComponent || typeof oComponent.getRouter !== "function") {
-            MessageToast.show("Componente non disponibile");
-            return;
-        }
-        const oRouter = oComponent.getRouter();
-        if (!oRouter || typeof oRouter.navTo !== "function") {
-            MessageToast.show("Router non disponibile");
-            return;
-        }
         try {
-            switch (sSection) {
-                case "1":
-                    oRouter.navTo("section1");
-                    break;
-                case "2":
-                    oRouter.navTo("section2");
-                    break;
-                case "3":
-                    oRouter.navTo("section3");
-                    break;
-                case "4":
-                    oRouter.navTo("section4");
-                    break;
-                case "5":
-                    oRouter.navTo("section5");
-                    break;
-                case "6":
-                    oRouter.navTo("section6");
-                    break;
-                case "7":
-                    oRouter.navTo("section7");
-                    break;
-                case "8":
-                    oRouter.navTo("section8");
-                    break;
-                case "9":
-                    oRouter.navTo("section9");
-                    break;
-                case "10":
-                    oRouter.navTo("section10");
-                    break;
-                case "11":
-                    oRouter.navTo("section11");
-                    break;
-                case "12":
-                    oRouter.navTo("section12");
-                    break;
-                case "13":
-                    oRouter.navTo("section13");
-                    break;
-                case "14":
-                    oRouter.navTo("section14");
-                    break;
-                default:
-                    MessageToast.show("Sezione " + sSection + " non ancora implementata");
-            }
-        } catch (error) {
-            MessageToast.show("Errore nella navigazione alla sezione " + sSection);
-        }
-    }
-
-    private loadSavedProgress(): void {
-        // Simula caricamento dati salvati
-        // In produzione, questa funzione caricherà i dati dal backend
-        try {
-            const savedData = this.getSavedData();
-            if (savedData && savedData.tipologiaRichiesta) {
-                this.markSectionCompleted("1");
-            }
-        } catch {
-            // Error loading saved progress - silent fail
-        }
-    }
-
-    private getSavedData(): { tipologiaRichiesta?: string } | null {
-        // Simula recupero dati salvati
-        // In produzione, farà una chiamata OData
-        return {
-            tipologiaRichiesta: "Nuova richiesta"
-        };
-    }
-
-    private markSectionCompleted(sSection: string): void {
-        if (this.appData.sections[sSection]) {
-            this.appData.sections[sSection].completed = true;
-            this.appData.sections[sSection].isEmpty = false;
+            // Inizializza il modello dati
+            const oModel = new JSONModel(this.sectionData);
+            this.getView()?.setModel(oModel);
             
-            // Aggiorna conteggio
-            this.updateProgress();
+            // Carica dati esistenti se presenti
+            this.loadExistingData().catch(() => {
+                MessageToast.show("Errore nel caricamento dei dati iniziali");
+            });
+        } catch (error) {
+            MessageToast.show("Errore nell'inizializzazione della sezione");
         }
     }
-
-    private updateProgress(): void {
+    
+    public onTipologiaSelect(oEvent: Event): void {
         try {
-            const completed = Object.values(this.appData.sections).filter(section => section.completed).length;
-            this.appData.completedSections = completed;
-            this.appData.progressText = completed + " di " + this.appData.totalSections + " sezioni completate";
+            const oRadioButtonGroup = oEvent.getSource() as unknown as RadioButtonGroup;
+            const iSelectedIndex = oRadioButtonGroup.getSelectedIndex();
             
             // Aggiorna il modello
-            const oView = this.getView();
-            if (oView) {
-                const oModel = oView.getModel() as JSONModel;
-                if (oModel) {
-                    oModel.refresh();
-                }
+            this.sectionData.selectedTipologia = iSelectedIndex;
+            this.sectionData.showValidationError = false;
+            
+            const oModel = this.getView()?.getModel() as JSONModel;
+            if (oModel) {
+                oModel.setProperty("/selectedTipologia", iSelectedIndex);
+                oModel.setProperty("/showValidationError", false);
+                oModel.refresh();
+            }
+            
+            // Salva automaticamente la selezione
+            this.saveSection().catch(() => {
+                MessageToast.show("Errore nel salvataggio automatico");
+            });
+            
+            // Mostra feedback
+            const selectedOption = this.sectionData.tipologiaOptions[iSelectedIndex];
+            if (selectedOption) {
+                MessageToast.show(`Selezionato: ${selectedOption.text}`);
             }
         } catch (error) {
-            // Error updating progress - silent fail
+            MessageToast.show("Errore nella selezione della tipologia");
         }
     }
 
-    private saveProgress(): void {
+    public onPreviousSection(): void {
+        // La sezione 1 è la prima, quindi naviga al dashboard
+        this.navigateToSection("dashboard");
+    }
+
+    public async onNextSection(): Promise<void> {
         try {
-            // Simula salvataggio nel backend
-            // Save progress data to backend here
-            // Aggiorna il modello per riflettere eventuali modifiche
-            const oView = this.getView();
-            if (oView) {
-                const oModel = oView.getModel() as JSONModel;
+            // Valida che sia stata fatta una selezione
+            if (this.sectionData.selectedTipologia === -1) {
+                this.sectionData.showValidationError = true;
+                const oModel = this.getView()?.getModel() as JSONModel;
                 if (oModel) {
+                    oModel.setProperty("/showValidationError", true);
                     oModel.refresh();
                 }
+                
+                MessageToast.show("Selezionare una tipologia di richiesta prima di continuare");
+                return;
             }
-            // In produzione, farà una chiamata OData POST/PUT
-        } catch {
+
+            // Salva i dati della sezione
+            await this.saveSection();
+            
+            // Naviga alla sezione 2
+            this.navigateToSection("2");
+        } catch (error) {
+            MessageToast.show("Errore nel passaggio alla sezione successiva");
+        }
+    }
+
+    public async onSaveDraft(): Promise<void> {
+        try {
+            await this.saveSection();
+            MessageToast.show("Sezione 1 salvata in bozza");
+        } catch (error) {
+            MessageToast.show("Errore nel salvataggio della bozza");
+        }
+    }
+
+    public async onSubmitToTC(): Promise<void> {
+        try {
+            await this.saveSection();
+            MessageToast.show("Funzione di invio non ancora disponibile dalla sezione");
+        } catch (error) {
             MessageToast.show("Errore nel salvataggio");
         }
     }
 
-    private submitRequest(): void {
+    public onNavBack(): void {
+        // Naviga al dashboard
+        this.navigateToSection("dashboard");
+    }
+
+    public onBeforeRendering(): void {
         try {
-            // Simula invio della richiesta
-            // Submit request to backend here
-            // In produzione, cambierà lo status della richiesta e invierà notifiche
-        } catch {
-            MessageToast.show("Errore nell'invio della richiesta");
+            this.loadExistingData().catch(() => {
+                // Silent fail
+            });
+        } catch (error) {
+            // Silent fail
         }
+    }
+
+    public onAfterRendering(): void {
+        try {
+            this.updateUIState();
+        } catch (error) {
+            // Silent fail
+        }
+    }
+
+    public onExit(): void {
+        // Cleanup quando il controller viene distrutto
+    }
+
+    private updateUIState(): void {
+        try {
+            const oView = this.getView();
+            if (!oView) { return; }
+
+            const oModel = oView.getModel() as JSONModel;
+            if (!oModel) { return; }
+
+            // Aggiorna stato UI in base ai dati
+            if (this.sectionData.selectedTipologia === -1) {
+                this.sectionData.showValidationError = false;
+            }
+            oModel.refresh();
+        } catch (error) {
+            // Silent fail
+        }
+    }
+
+    private async saveSection(): Promise<void> {
+        try {
+            if (this.sectionData.selectedTipologia === -1) {
+                return; // Non salvare se non c'è selezione
+            }
+
+            // Simula salvataggio nel backend
+            await this.saveSectionData();
+            
+            // Notifica completamento sezione
+            this.updateGlobalProgress();
+        } catch (error) {
+            throw new Error("Errore durante il salvataggio");
+        }
+    }
+
+    private async loadExistingData(): Promise<void> {
+        try {
+            const savedData = await this.getSavedSectionData();
+            if (savedData && savedData.tipologiaRichiesta) {
+                const index = this.sectionData.tipologiaOptions.findIndex(
+                    option => option.value === savedData.tipologiaRichiesta
+                );
+                
+                if (index !== -1) {
+                    this.sectionData.selectedTipologia = index;
+                    this.updateUIState();
+                }
+            }
+        } catch (error) {
+            throw new Error("Errore nel caricamento dei dati");
+        }
+    }
+
+    private saveSectionData(): Promise<void> {
+        return new Promise((resolve) => {
+            // Simula chiamata al backend per salvare i dati della sezione
+            // In produzione, userebbe il modello OData per salvare
+            setTimeout(() => {
+                resolve();
+            }, 100);
+        });
+    }
+
+    private updateGlobalProgress(): void {
+        try {
+            // Notifica al dashboard che la sezione 1 è stata completata
+            sap.ui.getCore().getEventBus().publish("ttct", "sectionCompleted", {
+                sectionId: "1",
+                completed: true
+            });
+        } catch (error) {
+            // Silent fail
+        }
+    }
+
+    private navigateToSection(section: string): void {
+        try {
+            const oComponent = this.getOwnerComponent() as UIComponent & { getRouter?: () => Router };
+            const oRouter = oComponent.getRouter && typeof oComponent.getRouter === "function"
+                ? oComponent.getRouter()
+                : null;
+            if (!oRouter) {
+                MessageToast.show("Router non disponibile");
+                return;
+            }
+            
+            if (section === "dashboard") {
+                oRouter.navTo("dashboard");
+            } else {
+                // Costruisce il nome della route dinamicamente
+                const routeName = `section${section}`;
+                oRouter.navTo(routeName);
+            }
+        } catch (error) {
+            MessageToast.show(`Errore nella navigazione alla sezione ${section}`);
+            // Fallback al dashboard
+            try {
+                const oComponent = this.getOwnerComponent() as UIComponent & { getRouter?: () => Router };
+                const oRouter = oComponent.getRouter && typeof oComponent.getRouter === "function"
+                    ? oComponent.getRouter()
+                    : null;
+                if (oRouter) {
+                    oRouter.navTo("dashboard");
+                }
+            } catch (fallbackError) {
+                MessageToast.show("Errore critico nella navigazione");
+            }
+        }
+    }
+
+    private async getSavedSectionData(): Promise<SavedData> {
+        // Simula recupero dati dal backend
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
+                    tipologiaRichiesta: null // o un valore salvato precedentemente
+                });
+            }, 100);
+        });
     }
 }

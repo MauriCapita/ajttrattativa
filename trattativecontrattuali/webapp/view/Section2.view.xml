@@ -1,0 +1,136 @@
+<mvc:View
+    controllerName="com.company.trattativecontrattuali.trattativecontrattuali.controller.Section2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Page title="Attivazione Trattative Contrattuali" showNavButton="true" navButtonPress="onNavBack">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <!-- Info Header -->
+                <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiMediumMarginBottom">
+                    <VBox>
+                        <Title text="Modulo TTCT - Nuova richiesta importazione" level="H2"/>
+                    </VBox>
+                    <HBox spacing="1rem">
+                        <Text text="Bozza - Importazione"/>
+                        <Text text="ID: TTCT-2024-NEW"/>
+                    </HBox>
+                </HBox>
+                
+                <!-- Progress Section -->
+                <VBox class="sapUiMediumMarginBottom">
+                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                        <VBox>
+                            <Title text="Avanzamento Compilazione" level="H3"/>
+                            <Text text="1 di 14 sezioni completate"/>
+                        </VBox>
+                        <HBox spacing="1rem">
+                            <Button text="Salva Bozza" icon="sap-icon://save" press="onSaveDraft"/>
+                            <Button text="Invia a TC" type="Emphasized" icon="sap-icon://email" press="onSubmitToTC"/>
+                        </HBox>
+                    </HBox>
+                </VBox>
+                
+                <!-- Mini navigation -->
+                <Title text="Sezioni del Modulo" level="H3" class="sapUiMediumMarginBottom"/>
+                
+                <!-- Mini Tiles Navigation -->
+                <VBox class="sapUiMediumMarginBottom">
+                    <HBox class="sapUiTinyMarginBottom" spacing="0.5rem">
+                        <VBox class="miniTile tileCompleted" width="80px" height="50px">
+                            <Text text="1" class="miniTileNumber"/>
+                            <Text text="Tipologia" class="miniTileText"/>
+                        </VBox>
+                        <VBox class="miniTile tileRequired" width="80px" height="50px">
+                            <HBox>
+                                <Text text="2" class="miniTileNumber"/>
+                                <Text text="*" class="miniRequiredIndicator"/>
+                            </HBox>
+                            <Text text="Programma" class="miniTileText"/>
+                        </VBox>
+                        <!-- Add other mini tiles here -->
+                    </HBox>
+                </VBox>
+                
+                <!-- Sezione 2 Form -->
+                <Panel headerText="Sezione 2: Programma" class="sapUiResponsiveMargin" width="auto">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            
+                            <VBox class="sapUiMediumMarginBottom">
+                                <Title text="Sezione 2: Programma" level="H3"/>
+                                <Text text="Sezione obbligatoria" class="sapUiTinyMarginTop"/>
+                            </VBox>
+                            
+                            <!-- Form Fields -->
+                            <VBox class="sapUiMediumMarginBottom">
+                                
+                                <VBox class="sapUiMediumMarginBottom">
+                                    <Label text="Selezione Programma" class="sapUiTinyMarginBottom"/>
+                                    <Text text="Selezionare il programma di riferimento per la richiesta TTCT"/>
+                                </VBox>
+                                
+                                <!-- Validation Message -->
+                                <MessageStrip 
+                                    text="Completare tutti i campi obbligatori" 
+                                    type="Error" 
+                                    showIcon="true"
+                                    class="sapUiMediumMarginBottom"
+                                    visible="{/showValidationError}"/>
+                                
+                                <!-- Program Fields -->
+                                <VBox spacing="1rem">
+                                    <VBox>
+                                        <Label text="Codice Programma *" class="sapUiTinyMarginBottom"/>
+                                        <Input 
+                                            value="{/codiceProgramma}"
+                                            placeholder="Es. PRG001"
+                                            change="onFieldChange"/>
+                                    </VBox>
+                                    
+                                    <VBox>
+                                        <Label text="Nome Programma *" class="sapUiTinyMarginBottom"/>
+                                        <Input 
+                                            value="{/nomeProgramma}"
+                                            placeholder="Es. Eurofighter Typhoon"
+                                            change="onFieldChange"/>
+                                    </VBox>
+                                    
+                                    <VBox>
+                                        <Label text="Versione Programma" class="sapUiTinyMarginBottom"/>
+                                        <Input 
+                                            value="{/versioneProgramma}"
+                                            placeholder="Es. 2024.1"
+                                            change="onFieldChange"/>
+                                    </VBox>
+                                </VBox>
+                                
+                            </VBox>
+                            
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <!-- Navigation Buttons -->
+                <HBox justifyContent="SpaceBetween" class="sapUiMediumMarginTop">
+                    <Button 
+                        text="Sezione Precedente" 
+                        icon="sap-icon://nav-back"
+                        press="onPreviousSection"/>
+                    <Button 
+                        text="Sezione Successiva" 
+                        type="Emphasized"
+                        icon="sap-icon://nav-forward"
+                        iconFirst="false"
+                        press="onNextSection"/>
+                </HBox>
+                
+            </VBox>
+        </content>
+        
+    </Page>
+    
+</mvc:View>

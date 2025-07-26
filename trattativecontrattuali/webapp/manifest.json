@@ -1,111 +1,149 @@
-{
-  "_version": "1.65.0",
-  "sap.app": {
-    "id": "com.company.trattativecontrattuali.trattativecontrattuali",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "0.0.1"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "resources": "resources.json",
-    "sourceTemplate": {
-      "id": "@sap/generator-fiori:feop",
-      "version": "1.18.3",
-      "toolsId": "8b4cbc26-63c2-43f8-bd68-b8ba05ccfdfc"
-    },
-    "dataSources": {
-      "mainService": {
-        "uri": "/here/odata/v4/TTCTService/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "localUri": "localService/mainService/metadata.xml",
-          "odataVersion": "4.0"
-        }
-      }
-    }
+"routing": {
+  "config": {
+    "routerClass": "sap.m.routing.Router",
+    "viewType": "XML",
+    "path": "com.company.trattativecontrattuali.trattativecontrattuali.view",
+    "controlId": "app",
+    "controlAggregation": "pages",
+    "async": true
   },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
+  "routes": [
+    {
+      "pattern": "",
+      "name": "dashboard",
+      "target": "dashboard"
     },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
+    {
+      "pattern": "section1",
+      "name": "section1",
+      "target": "section1"
+    },
+    {
+      "pattern": "section2",
+      "name": "section2",
+      "target": "section2"
+    },
+    {
+      "pattern": "section3",
+      "name": "section3",
+      "target": "section3"
+    },
+    {
+      "pattern": "section4",
+      "name": "section4",
+      "target": "section4"
+    },
+    {
+      "pattern": "section5",
+      "name": "section5",
+      "target": "section5"
+    },
+    {
+      "pattern": "section6",
+      "name": "section6",
+      "target": "section6"
+    },
+    {
+      "pattern": "section7",
+      "name": "section7",
+      "target": "section7"
+    },
+    {
+      "pattern": "section8",
+      "name": "section8",
+      "target": "section8"
+    },
+    {
+      "pattern": "section9",
+      "name": "section9",
+      "target": "section9"
+    },
+    {
+      "pattern": "section10",
+      "name": "section10",
+      "target": "section10"
+    },
+    {
+      "pattern": "section11",
+      "name": "section11",
+      "target": "section11"
+    },
+    {
+      "pattern": "section12",
+      "name": "section12",
+      "target": "section12"
+    },
+    {
+      "pattern": "section13",
+      "name": "section13",
+      "target": "section13"
+    },
+    {
+      "pattern": "section14",
+      "name": "section14",
+      "target": "section14"
     }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.138.1",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.ui.unified": {},
-        "sap.ui.layout": {},
-        "sap.f": {},
-        "sap.ui.fl": {}
-      }
+  ],
+  "targets": {
+    "dashboard": {
+      "viewId": "dashboard",
+      "viewName": "Dashboard"
     },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
+    "section1": {
+      "viewId": "section1",
+      "viewName": "Section1"
     },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "com.company.trattativecontrattuali.trattativecontrattuali.i18n.i18n",
-          "supportedLocales": ["", "en"],
-          "fallbackLocale": "en"
-        }
-      }
+    "section2": {
+      "viewId": "section2",
+      "viewName": "Section2"
     },
-    "rootView": {
-      "viewName": "com.company.trattativecontrattuali.trattativecontrattuali.view.App",
-      "type": "XML",
-      "id": "app"
+    "section3": {
+      "viewId": "section3",
+      "viewName": "Section3"
     },
-    "routing": {
-      "config": {
-        "routerClass": "sap.m.routing.Router",
-        "viewType": "XML",
-        "path": "com.company.trattativecontrattuali.trattativecontrattuali.view",
-        "controlId": "app",
-        "controlAggregation": "pages",
-        "async": true
-      },
-      "routes": [
-        {
-          "pattern": "",
-          "name": "dashboard",
-          "target": "dashboard"
-        },
-        {
-          "pattern": "section1",
-          "name": "section1",
-          "target": "section1"
-        }
-      ],
-      "targets": {
-        "dashboard": {
-          "viewId": "dashboard",
-          "viewName": "Dashboard"
-        },
-        "section1": {
-          "viewId": "section1",
-          "viewName": "Section1"
-        }
-      }
+    "section4": {
+      "viewId": "section4",
+      "viewName": "Section4"
+    },
+    "section5": {
+      "viewId": "section5",
+      "viewName": "Section5"
+    },
+    "section6": {
+      "viewId": "section6",
+      "viewName": "Section6"
+    },
+    "section7": {
+      "viewId": "section7",
+      "viewName": "Section7"
+    },
+    "section8": {
+      "viewId": "section8",
+      "viewName": "Section8"
+    },
+    "section9": {
+      "viewId": "section9",
+      "viewName": "Section9"
+    },
+    "section10": {
+      "viewId": "section10",
+      "viewName": "Section10"
+    },
+    "section11": {
+      "viewId": "section11",
+      "viewName": "Section11"
+    },
+    "section12": {
+      "viewId": "section12",
+      "viewName": "Section12"
+    },
+    "section13": {
+      "viewId": "section13",
+      "viewName": "Section13"
+    },
+    "section14": {
+      "viewId": "section14",
+      "viewName": "Section14"
     }
   }
 }
